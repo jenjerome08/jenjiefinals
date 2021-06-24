@@ -1,0 +1,141 @@
+{%  extends 'anxiety/main.html' %}
+
+{% block content %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+<br>
+	<h1>Anxiety</h1>
+		<h3>Population {{total_population}}</h3>	
+		<h3>Total Sample = {{total_samples}}</h3>
+		<h3>Assessment = {{total_assessment}}</h3>
+<hr>
+	<h1>Generalized Anxiety Disorder</h1>
+		<h3>Minimal = {{minimal}}</h3>
+		<h3>Mild = {{mild}}</h3>
+		<h3>Moderate = {{moderate}}</h3>
+		<h3>Severe = {{severe}}</h3>
+<hr>
+	<h1>Condition</h1>
+		<h3>EASE = {{ease}}</h3>
+		<h3>DIS-EASE = {{dis_ease}}</h3>
+	<hr>
+	<h2>POPULATION:</h2>
+
+			<a class="" href="{% url 'create_respondent' %}">Create Respondent</a>
+			<table style="width: 50%"class="">
+				<tr>
+					<th>Viewer</th>
+					<th>Respondent</th>
+					<th>Gender</th>
+					<th>Age</th>
+					<th>Date</th>
+				</tr>
+				{% for respondent in respondents %}
+					<tr>
+						<td><a class="" href="{% url 'respondent' respondent.id %}">View</a></td>
+						<td>{{respondent.name}}</td>
+						<td>{{respondent.gender}}</td>
+						<td>{{respondent.age}}</td>
+						<td>{{respondent.date_created}}</td>
+					</tr>
+				{% endfor %}
+		</table>
+		<br><br><br><br>
+<hr>
+<hr>
+<h1>START ANSWERING THIS --------------->  <a class="" href="{% url 'create_symptom' %}">QUESTIONNAIRE</a>  <------------ START START ANSWERING THIS</h1>
+<hr>
+<hr>
+<br><br>
+<center><h1>SAMPLE</h1></center><br>
+<h2>GENERALIZED ANXIETY DISORDER</a></h2>
+
+	<table style="width: 25%" class="">
+				<tr>
+					<th>Person</th>
+					<th>Anxiety</th>
+					<th>Points</th>
+					<th>Date</th>
+
+				</tr>
+				{% for anxious in anxiety %}
+					<tr>
+						<td>{{anxious.name}}</a></td>
+						<td>{{anxious.anxiety_level}}</td>
+						<td>{{anxious.points}}</td>
+						<td>{{anxious.date_created}}</td>	
+					</tr>
+					{% endfor %}	
+				</table>
+
+<br><br> 
+<h2>PREDICTOR VARIABLE</h2>
+<table style="width: 25%" class="">
+				<tr>
+						<th>Person</th>
+						<th>Main Cause</th>
+						
+						<th>Date</th>
+
+				</tr>
+				{% for tanong in survey %}
+					<tr>
+						<td>{{tanong.name}}</a></td>
+						<td>{{tanong.main_cause}}</td>
+						
+						<td>{{tanong.date_created}}</td>
+					</tr>
+					{% endfor %}	
+				</table>
+				<hr>
+
+<center><h1>ASSESSMENT RESPONDENTS</h1></center><br>
+
+			
+			<table style="width: 35%" class="">
+				<tr>
+					<th>Person</th>
+					<th>Status</th>
+					<th>Date Answered</th>
+					
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+				{% for sample in samples %}
+					<tr>
+						<td>{{sample.name}}</td>
+						<td>{{sample.status}}</td>
+						<td>{{sample.date_created}}</td>
+						
+						<td><a class="" href="{% url 'update_assessment' sample.id %}">Update</a></td>
+						<td><a class="" href="{% url 'delete_assessment' sample.id %}">Delete</a></td>
+					</tr>
+
+				{% endfor %}
+			</table>
+
+
+<hr>
+<hr>
+<h1>IF YOU WANT TO APPLY SOME STATISTICS YOU CAN SEE ALL THE DATA HERE -----> <a class="" href="{% url 'data' %}">DATA</a></h1>
+
+<hr>
+
+{% endblock %}
+

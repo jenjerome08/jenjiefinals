@@ -1,0 +1,133 @@
+{%  extends 'anxiety/main.html' %}
+{% load static %}
+{% block content %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.site-form {
+    margin-top: 20px;
+    border: 2px solid crimson;
+    padding: 20px;
+}
+
+.site-form input, .site-form textarea{
+    display: block;
+    margin: 20px 0 0px 0;
+    padding: 10px;
+}
+
+
+.site-form input[type="submit"]{
+    background: crimson;
+    border: 0;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+</style>
+<center><h1>Frequency</h1></center>
+<table style="width: 100%"class="">
+				<tr>
+				
+					<th>Restlessness</th>
+					<th>Difficulty concentrating</th>
+					<th>Irritability</th>
+					<th>Dizziness</th>
+
+					<th>Tiredness</th>
+					<th>Feeling sick</th>
+					<th>Muscle aches</th>
+					<th>A sense of dread</th>
+			
+					<th>Headache</th>
+					<th>Insomnia</th> 
+		
+				</tr>
+
+					<tr>
+		
+						<td>{{a}}</td>
+						<td>{{b}}</td>
+						<td>{{c}}</td>
+						<td>{{d}}</td>
+						<td>{{e}}</td>
+						<td>{{rf}}</td>
+						<td>{{g}}</td>
+						<td>{{h}}</td>
+						<td>{{i}}</td>
+						<td>{{j}}</td>
+				
+					</tr>
+			
+		</table>
+			<form class="site-form" action="" method="POST" enctype="multipart/form-data">
+				<hr>
+<hr>
+<center><h1>{{total_response}}</h1></center>
+<hr>
+<hr>
+				<h1>Symptoms - Generalised anxiety disorder</h1>
+				<hr>
+<p>How severe the symptoms are varies from person to person. Some people have only 1 or 2 symptoms, while others have many more.Theese are the Psychological symptoms of GAD and Physical symptoms of GAD</p>
+<p>If you got 4 or more symptoms, you should answer the questionnaire to give more understanging why you engage this symptoms, because Generalized anxiety disorder can't detected quickly.</p>
+
+
+
+				{% csrf_token %}
+				{{form}}
+			
+				<input type="submit" name="Submit">
+			</form><br>
+
+<table style="width: 100%"class="">
+				<tr>
+					<th>Person</th>
+					<th>Restlessness</th>
+					<th>Difficulty concentrating</th>
+					<th>Irritability</th>
+					<th>Dizziness</th>
+
+					<th>Tiredness</th>
+					<th>Feeling sick</th>
+					<th>Muscle aches</th>
+					<th>A sense of dread</th>
+			
+					<th>Headache</th>
+					<th>Insomnia</th> 
+					<th>Date</th>
+				</tr>
+				{% for respondent in symptoms %}
+					<tr>
+						<td>{{respondent.name}}</td>
+						<td>{{respondent.a}}</td>
+						<td>{{respondent.b}}</td>
+						<td>{{respondent.c}}</td>
+						<td>{{respondent.d}}</td>
+						<td>{{respondent.e}}</td>
+						<td>{{respondent.f}}</td>
+						<td>{{respondent.g}}</td>
+						<td>{{respondent.h}}</td>
+						<td>{{respondent.i}}</td>
+						<td>{{respondent.j}}</td>
+						<td>{{respondent.date_created}}</td>
+					</tr>
+				{% endfor %}
+		</table>
+			
+			<h1><a class="" href="{% url 'home' %}">Back</a></h1><h1><a class="" href="{% url 'questionnaire' %}">Questionnaire</a></h1>	
+{% endblock %}

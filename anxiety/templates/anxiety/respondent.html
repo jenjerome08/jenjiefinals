@@ -1,0 +1,140 @@
+{%  extends 'anxiety/main.html' %}
+
+{% block content %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+	<br>
+		<h5>Respondent:</h5>
+					 <img src="{{ respondent.image.url }}" />
+			<hr>
+			<a class="" href="{% url 'update_respondent' respondent.id %}">Update Respondent</a>
+			<a class="" href="{% url 'delete_respondent' respondent.id %}">Delete Respondent</a>
+
+			<h5>Personal Information</h5>
+			
+			<hr>
+			<h1>Hi my name is {{respondent.name}}</h1>
+
+			<p>Gender: {{respondent.gender}}</p>
+			<p>Age: {{respondent.age}}</p>
+			<p>Email: {{respondent.email}}</p>
+			<p>Phone: {{respondent.phone}}</p>
+			<p>Phone: {{respondent.section}}</p>
+			
+			<hr>
+			<center>
+				<h3>Total GAD Response&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Relation Response &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Assessment Response</h3>
+			<h1>{{gad_count}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{predictor_count}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{sample_count}}</h1>
+
+
+		</center>
+			<hr>
+			<h2>Assessment Result</h2>
+			<table class="" style="width: 100%">
+				<tr>
+					<th>Main Cause</th>
+					<th>AnxietyLevel</th>
+					<th>Status</th>
+					<th>Date Answered</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+				{% for sample in samples %}
+					<tr>
+						<td>{{sample.predictors}}</td>
+						<td>{{sample.anxiety_levels}}</td>
+						<td>{{sample.status}}</td>
+						<td>{{sample.date_created}}</td>
+						
+						<td><a class="" href="{% url 'update_assessment' sample.id %}">Update</a></td>
+						<td><a class="" href="{% url 'delete_assessment' sample.id %}">Delete</a></td>
+					</tr>
+
+				{% endfor %}
+
+			</table>
+			<hr>
+<h2>Predicting Generalized Anxiety Disorder</h2>
+
+					<table class="table" style="width: 100%">
+						<tr>
+							<th>Level of Anxiety</th>
+							<th>Total Points</th>
+							<th>TUPC-ID</th>
+							<th>Date</th>
+
+						</tr>
+					
+						{% for jenjie in surveys %}
+							<tr>
+								<td>{{jenjie.anxiety_level}}</td>
+								<td>{{jenjie.points}}</td>
+								<td>{{jenjie.tupc_id}}</td>
+								<td>{{jenjie.date_created}}</td>
+
+							</tr>
+					
+						{% endfor %}
+						
+
+
+								
+					</table>
+
+
+		 
+		
+<hr>
+
+					<br>
+
+					<h2>Predicting Generalized Anxiety Disorder</h2>
+
+					<table class="table" style="width: 100%">
+						<tr>
+							
+							<th>Do you have exercise</th>
+							<th>Do you have computer or Laptop</th>
+							<th>Are you living with you family</th>
+							<th>Internet Connections</th>
+							<th>Main Cause</th>
+							<th>Date</th>
+					
+						</tr>
+					
+						{% for jenjie in predictors %}
+							<tr>
+								<td>{{jenjie.exercise}}</td>
+								<td>{{jenjie.computer_or_laptop}}</td>
+								<td>{{jenjie.Living_with_family}}</td>
+								<td>{{jenjie.internet_connection}}</td>
+								<td>{{jenjie.main_cause}}</td>
+								<td>{{jenjie.date_created}}</td>
+							
+							</tr>
+					
+						{% endfor %}
+						
+
+
+								
+					</table>
+
+						
+				
+{% endblock %}

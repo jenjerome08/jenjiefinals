@@ -1,0 +1,111 @@
+{%  extends 'anxiety/main.html' %}
+
+{% block content %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>		<br>
+
+<a class="" href="{% url 'home' %}">Back</a>
+<hr>
+<hr>
+<h1>PREDICTOR VARIABLES</h1>
+<table class="table">
+	<tr>
+		<th>Person</th>
+		<th>Main Cause</th>
+		<th>Do you have exercise</th>
+		<th>Do you have computer or Laptop</th>
+		<th>Are you living with you family</th>
+		<th>Internet Connections</th>
+	
+		<th>Date</th>
+	</tr>
+
+{% for jenjie in predictor %}
+	<tr>
+		<td><a href=""></td>
+		<td>{{jenjie.main_cause}}</td>
+		<td>{{jenjie.exercise}}</td>
+		<td>{{jenjie.computer_or_laptop}}</td>
+		<td>{{jenjie.Living_with_family}}</td>
+		<td>{{jenjie.internet_connection}}</td>
+		<td>{{jenjie.date_created}}</td>
+								
+	</tr>
+						
+	{% endfor %}
+						
+</table>
+<hr>
+<hr>
+<h1>RESULT OF GENERALIZED ANXIETY DISORDER - 7</h1>
+<br>
+<br>
+<table class="table">
+	<tr>
+	<th>Person</th>
+	<th>Points</th>
+	<th>Anxiety Levels</th>
+	<th>Date</th>
+
+							
+						
+</tr>
+
+{% for delapena in anxiety %}
+	<tr>
+		<td><a href=""></td>
+		<td>{{delapena.points}}</td>
+		<td>{{delapena.anxiety_level}}</td>
+		<td>{{delapena.date_created}}</td>
+								
+	</tr>
+						
+	{% endfor %}
+						
+</table>
+
+
+
+<h1>ASSESSMENT OF ANXIETY AND THE RELATIONSHIP</h1>
+<br>
+<br>
+<table class="table">
+	<tr>
+	<th>Person</th>
+	<th>Main Cause</th>			
+	<th>Anxiety and ID</th>
+	<th>Age</th>
+	<th>Date</th>
+							
+						
+</tr>
+
+{% for villasenor in assessment %}
+	<tr>
+		<td><a href=""></td>
+		<td>{{villasenor.predictors}}</td>
+		<td>{{villasenor.anxiety_levels}}</td>
+		<td>{{villasenor.status}}</td>
+		<td>{{villasenor.date_created}}</td>
+								
+	</tr>
+						
+	{% endfor %}
+						
+</table>
+{% endblock content %}

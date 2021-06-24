@@ -1,0 +1,18 @@
+{%  extends 'anxiety/main.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+			<p>Are you sure you want to delete "{{item}}"?</p>
+
+			<form action="{% url 'delete_assessment' item.id  %}" method="POST">
+				
+				{% csrf_token %}
+				<a class="" href="{% url 'home' %}">Cancel</a>
+
+				<input class="" type="submit" name="Confirm">
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

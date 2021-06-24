@@ -1,0 +1,46 @@
+{%  extends 'anxiety/main.html' %}
+{% load static %}
+{% block content %}
+<style>
+	.site-form {
+    margin-top: 20px;
+    border: 2px solid crimson;
+    padding: 20px;
+}
+
+.site-form input, .site-form textarea{
+    display: block;
+    margin: 20px 0 0px 0;
+    padding: 10px;
+}
+
+
+.site-form input[type="submit"]{
+    background: crimson;
+    border: 0;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+</style>
+<hr>
+<hr>
+<center><h1>{{predictor_respondent}}</h1></center>
+<hr>
+<hr>
+			<form class="site-form" action="" method="POST" enctype="multipart/form-data">
+				<h1>Let's Find the posible relationship of anxiety</h1>
+<p>click the link here to answer the posible relationship of anxiety</p>
+<br>
+<br>
+<br>
+<br>
+				{% csrf_token %}
+				{{form}}
+			
+				<input type="submit" name="Submit">
+			</form><br>
+
+
+{% endblock %}

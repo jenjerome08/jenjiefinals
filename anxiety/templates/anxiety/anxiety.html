@@ -1,0 +1,26 @@
+{%  extends 'anxiety/main.html' %}
+
+{% block content %}
+	<br>
+		<h5>Respondent:</h5>
+					 <img src="{{ respondent.image.url }}" />
+			<hr>
+		</div>
+	</div>
+			<h5>Contact Information</h5>
+			<hr>
+			<p>Gender: {{respondent.name}}</p>
+			<p>Gender: {{respondent.gender}}</p>
+			<p>Age: {{respondent.age}}</p>
+			<p>Email: {{respondent.email}}</p>
+			<p>Phone: {{respondent.phone}}</p>
+
+			
+			<hr>
+			<h5>Assessment Response</h5>
+			<h1>{{sample_count}}</h1>
+
+
+
+
+{% endblock %}
